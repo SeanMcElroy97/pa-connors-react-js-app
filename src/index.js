@@ -5,6 +5,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from 'react-router-dom'
+import  firebase  from 'firebase';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyCdBmSFws3xP3HZ8YCDM0Wgq4BfwHd-1uM",
+  authDomain: "paconnorsgfc.firebaseapp.com",
+  databaseURL: "https://paconnorsgfc-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "paconnorsgfc",
+  storageBucket: "paconnorsgfc.appspot.com",
+  messagingSenderId: "89619719007",
+  appId: "1:89619719007:web:2141469f5de7abc264ccea",
+  measurementId: "G-8MWESW1YHF"
+};
+
+firebase.initializeApp(firebaseConfig)
 
 ReactDOM.render(
   <React.StrictMode>
