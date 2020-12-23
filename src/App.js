@@ -7,7 +7,7 @@ import Events from './components/events';
 function App() {
   return (
     <React.Fragment>
-      <NavBar/>
+      <NavBar />
       <Switch>
         <Route path="/players" component={Players}/>
         <Route path="/events" component={Events}/>

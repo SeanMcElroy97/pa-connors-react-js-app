@@ -16,6 +16,10 @@ code {
   margin-bottom: 30px;
 }
 
+.table {
+  margin-top: 100px;
+}
+
 .clickable {
   cursor: pointer;
 }
