@@ -47,7 +47,7 @@ class Players extends Component {
     render() { 
         const {players} = this.state;
         return ( 
-        <div className="container">
+        <div className="container d-flex justify-content-center">
             <div className="card-columns">
                 {players.map(p=>
                 <div onClick={()=>{console.log(`${p.fullName} clicked`)}} className={this.getCardBackgroundColor(p)} key={p.fullName} style={{width: '16rem'}}>
