@@ -44,13 +44,16 @@ class Players extends Component {
     getOverallRating = player =>{
         return Math.ceil((player.drinkingAbility + player.golfingAbility + player.pokerAbility)/3)
     }
+
+    
+
     render() { 
         const {players} = this.state;
         return ( 
         <div className="container d-flex justify-content-center">
-            <div className="card-columns">
+            <div className="card-columns ">
                 {players.map(p=>
-                <div onClick={()=>{console.log(`${p.fullName} clicked`)}} className={this.getCardBackgroundColor(p)} key={p.fullName} style={{width: '16rem'}}>
+                <div  onClick={()=>{this.props.history.push(`/players/${p.id}`)}} className={this.getCardBackgroundColor(p)} key={p.fullName} style={{width: '16rem'}}>
                      <div className={`card-header text-center ${this.getTextColor(p)}`}><h2 className="card-title">{this.getOverallRating(p)}</h2></div>
                         <div className={`card-header text-center ${this.getTextColor(p)}`}><h5 className="card-title">{p.fullName} </h5></div>
                         <img className="card-img-top" src={p.imgsource} style={{height: '200px'}} alt={`${p.fullName} img`}></img>

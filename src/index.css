@@ -12,8 +12,16 @@ code {
     monospace;
 }
 
-.navbar {
+.navbarT {
   margin-bottom: 30px;
+}
+
+.navbarB {
+  margin-top: 20px;
+}
+
+.sponsorImg {
+  margin-left: 20px;
 }
 
 .table {

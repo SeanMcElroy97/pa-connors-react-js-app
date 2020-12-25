@@ -1,5 +1,11 @@
+
+
 const Footer = () => {
-    return ( <h1>Im the footer</h1> );
+    return ( 
+        <nav className=" navbarB navbar bg-light navbar-light d-flex justify-content-end">
+            <img src="/drinkawareLogo.jpg " className="sponsorImg" style={{width: '200px', height: '50px'}}/>
+      </nav>
+        );
 }
  
 export default Footer;

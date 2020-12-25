@@ -4,23 +4,40 @@ import NextEvent from './common/nextEvent';
 import Pagination from './common/pagination';
 import { paginate } from './../utils/paginate';
 import { sort } from './../utils/sorting';
+import firebase from 'firebase'
 
 class Events extends Component {
     state = { 
-        events : getEvents(),
+        events : [],
         pageSize : 5,
         currentPage: 1,
         order: 'desc'
      }
 
+     componentDidMount(){
+        const db = firebase.database();
+        const dbRefPlayers = db.ref().child('events')
+        dbRefPlayers.on('value', snap =>{
+            this.setState({events : snap.val()})
+        })
+        
+     }
+
+    //  componentDidUpdate(){
+    //     console.log(this.getNextEvent())
+    //  }
+
     getNextEvent= () =>{
         const allEvents = [...this.state.events]
-        const nextEvent = allEvents.reduce((soonestEv,currentEvent)=>{
-            if(currentEvent.time>new Date().getTime() && currentEvent.time<soonestEv.time){
-                return currentEvent
+        let nextEvent = null;
+        for(let event of allEvents){
+            if (event.time>new Date().getTime() && nextEvent===null){
+                nextEvent=event;
             }
-            return soonestEv;
-        });
+            if(event.time>new Date() && event.time<nextEvent){
+                nextEvent=event;
+            }
+        }
         return nextEvent;
     }
 
@@ -58,15 +75,36 @@ class Events extends Component {
         }
         this.setState({order: 'desc'})
     }
+
+    getNoEvent=()=>{
+            return (
+                <div className="card text-center">
+                <div className="card-header">
+                Next Event
+                </div>
+                <div className="card-body">
+                <h5 className="card-title">No upcoming events</h5>
+                <p className="card-text">:(</p>
+                </div>
+                <div className="card-footer text-muted">
+                </div>
+                </div> 
+            )
+    }
+    
     
 
     render() { 
         const eventsOrdered = sort(this.state.order, 'time', this.state.events)
        
         const events = paginate(eventsOrdered, this.state.currentPage, 5)
+
+        // console.log(this.getNextEvent())
         return (
             <div>
-                <NextEvent event={this.getNextEvent()}/>
+                {this.getNextEvent()!==null && <NextEvent event={this.getNextEvent()}/>}
+                {this.getNextEvent()===null && this.getNoEvent()}
+
            
                 <table className="table">
                     <thead>
@@ -92,5 +130,7 @@ class Events extends Component {
         );
     }
 }
+
+
  
 export default Events;

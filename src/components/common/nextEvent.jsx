@@ -1,16 +1,23 @@
+import { min } from 'lodash';
 import React, {useEffect, useRef, useState} from 'react';
 
 const NextEvent = (props) => {
+
     const [days, setDays] = useState('00');
     const [hours, setHours] = useState('00');
     const [minutes, setMinutes] = useState('00');
     const [seconds, setSeconds] = useState('00');
-    //
     const event=props.event;
-    
-
     let interval = useRef();
 
+    useEffect(()=>{
+            startTimer();
+        
+    },[])
+
+    
+  
+    
     const startTimer= ()=>{
         const countDownDate= event.time
         interval = setInterval(()=>{
@@ -34,22 +41,20 @@ const NextEvent = (props) => {
         }, 1000)
     }
 
-    useEffect(()=>{
-        startTimer();
-        
-    })
+    
 
     const getTimeAmPm= timeInmillis =>{
         const date = new Date(timeInmillis);
         const hours = date.getHours();
+        const minutes = date.getMinutes();
   
         if(hours<12){
-            return `${hours} am`
+            return `${hours} : ${minutes} am`
         }else{
-            return `${hours-12} pm`
+            return `${hours-12} : ${minutes} pm`
         }
     }
-    //console.log(today)
+    
     return ( 
         <div className="card text-center">
             <div className="card-header">

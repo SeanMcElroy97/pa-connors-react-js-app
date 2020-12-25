@@ -5,7 +5,7 @@ import Players from './players';
 const NavBar = () => {
     return (
     <div >
-        <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+        <nav className="navbarT navbar navbar-expand-lg navbar-dark bg-success">
           <a className="navbar-brand" href="#">Pa Connors GFC</a>
             <div className="" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
