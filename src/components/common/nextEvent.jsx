@@ -48,10 +48,11 @@ const NextEvent = (props) => {
         const hours = date.getHours();
         const minutes = date.getMinutes();
   
+    
         if(hours<12){
-            return `${hours} : ${minutes} am`
+            return minutes===0? `${hours} am` : `${hours} : ${minutes} am`
         }else{
-            return `${hours-12} : ${minutes} pm`
+            return minutes===0? `${hours-12} pm` : `${hours-12} : ${minutes} pm`
         }
     }
     
